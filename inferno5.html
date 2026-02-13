@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>솔로지옥 5 - 나의 파트너 찾기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #000;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title-font { font-family: 'Playfair Display', serif; }
+        .hidden-el { display: none; }
+        
+        .inferno-gradient {
+            background: linear-gradient(to right, #fb923c, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 배경 이미지 레이어 설정 (사용자 제공 링크 반영) */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-image {
+            width: 100%;
+            height: 100%;
+            /* 단체 사진 링크 반영 */
+            background-image: url('https://postfiles.pstatic.net/MjAyNjAyMTNfMjQ/MDAxNzcwOTgyNjEyMTQz.qabDtORL8cfGgCDzqD_TxBxepSECu4JWGhn7rzX12OIg.OtiLmqiUB0dvK6BbOpVlpk9CMEgJMfkV065Wcsgg8zMg.JPEG/%EC%86%94%EB%A1%9C%EC%A7%80%EC%98%A5%EB%8B%A8%EC%B2%B4.jpg?type=w773');
+            background-size: cover;
+            background-position: center;
+            /* 저작권 보호 및 가독성을 위한 블러와 어둡기 조절 */
+            filter: blur(5px) brightness(0.4); 
+            transform: scale(1.1);
+        }
+
+        .card-glow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-img-container {
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 2rem;
+            position: relative;
+            background: #0f172a;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .loading-fire {
+            font-size: 4rem;
+            animation: burn 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes burn {
+            from { transform: scale(1); filter: drop-shadow(0 0 10px #f97316); }
+            to { transform: scale(1.1); filter: drop-shadow(0 0 30px #ef4444); }
+        }
+
+        @keyframes progress {
+            0% { width: 0%; transform: translateX(-100%); }
+            50% { width: 100%; transform: translateX(0%); }
+            100% { width: 0%; transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 배경 레이어 -->
+    <div class="bg-container">
+        <div class="bg-image"></div>
+    </div>
+
+    <div id="app" class="max-w-md w-full bg-slate-950/80 backdrop-blur-2xl rounded-[3.5rem] p-8 card-glow relative border border-white/10 mx-4">
+        
+        <!-- 메인 화면 -->
+        <div id="main-screen">
+            <div class="text-center mb-10">
+                <p class="text-orange-500 font-bold tracking-[0.5em] text-[10px] mb-3 uppercase">Netflix Series</p>
+                <h1 class="title-font text-4xl md:text-5xl mb-2 font-black tracking-tighter uppercase">
+                    Single's <span class="inferno-gradient">Inferno 5</span>
+                </h1>
+                <div class="h-[1px] w-20 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto my-6"></div>
+                <h2 class="text-2xl font-bold text-white mb-1">나의 파트너는?</h2>
+                <p class="text-slate-400 text-xs italic font-light tracking-widest">Who is my soulmate in Inferno 5?</p>
+            </div>
+
+            <!-- 성별 선택 -->
+            <div class="space-y-8">
+                <div class="text-center">
+                    <p class="text-slate-200 font-medium text-lg">당신의 성별을 선택하세요</p>
+                    <p class="text-[9px] text-slate-500 uppercase tracking-[0.2em] mt-1 italic">Select your gender to start matching</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <button onclick="pickPartner('male')" class="group relative bg-white/5 hover:bg-blue-600/20 border border-white/10 hover:border-blue-500/50 py-12 rounded-[2.5rem] transition-all transform hover:-translate-y-2 active:scale-95 shadow-2xl">
+                        <span class="text-5xl mb-4 block group-hover:scale-110 transition-transform">♂️</span>
+                        <span class="font-bold block text-lg">남자</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-widest">Male</span>
+                    </button>
+                    
+                    <button onclick="pickPartner('female')" class="group relative bg-white/5 hover:bg-pink-600/20 border border-white/10 hover:border-pink-500/50 py-12 rounded-[2.5rem] transition-all transform hover:-translate-y-2 active:scale-95 shadow-2xl">
+                        <span class="text-5xl mb-4 block group-hover:scale-110 transition-transform">♀️</span>
+                        <span class="font-bold block text-lg">여자</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-widest">Female</span>
+                    </button>
+                </div>
+                <p class="text-center text-slate-500 text-[10px] mt-10 leading-relaxed px-6 font-light opacity-80">
+                    운명적인 15인의 솔로가 당신을 기다립니다.<br>
+                    천국도로 함께 떠날 단 한 명의 파트너를 확인하세요!
+                </p>
+            </div>
+        </div>
+
+        <!-- 결과 화면 -->
+        <div id="result-screen" class="hidden-el text-center">
+            <div class="mb-6">
+                <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-1">Match Success! 🔥</h3>
+                <p class="text-xs text-orange-500 font-bold uppercase tracking-[0.2em]">천국도로 함께 갈 당신의 짝</p>
+            </div>
+
+            <div class="profile-img-container mb-8 shadow-2xl ring-1 ring-white/20 ring-offset-4 ring-offset-slate-950">
+                <img id="partner-img" src="" alt="Partner Profile">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-transparent p-6 text-left">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-2 py-0.5 bg-orange-600 text-[9px] font-bold rounded text-white uppercase tracking-tighter">Official Cast</span>
+                        <span id="partner-tag" class="px-2 py-0.5 bg-white/20 text-[9px] font-bold rounded text-slate-200 uppercase"></span>
+                    </div>
+                    <p id="partner-name" class="text-white text-3xl font-black mb-1"></p>
+                    <p id="partner-desc" class="text-slate-300 text-[11px] font-medium leading-relaxed"></p>
+                </div>
+            </div>
+
+            <button onclick="resetApp()" class="w-full bg-white/10 hover:bg-white/20 text-white py-4 rounded-2xl font-bold border border-white/20 transition-all active:scale-95">
+                다시 매칭하기 (Retry)
+            </button>
+        </div>
+
+        <!-- 로딩 화면 -->
+        <div id="loading-screen" class="hidden-el text-center py-20">
+            <div class="loading-fire mb-8">🔥</div>
+            <p class="text-white font-bold text-lg mb-4">당신의 완벽한 케미를 분석 중...</p>
+            <div class="w-56 h-1.5 bg-white/10 mx-auto rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-orange-500 to-red-600 animate-[progress_1.5s_ease-in-out_infinite]"></div>
+            </div>
+            <p class="text-slate-500 text-[10px] mt-8 uppercase tracking-[0.3em]">Finding your soulmate...</p>
+        </div>
+    </div>
+
+    <script>
+        // 출연진 15인 데이터 리스트 (사진 링크 포함)
+        const femaleCast = [
+            { name: "최미나수", tag: "Miss Earth", desc: "2022 미스 어스 우승자, 지성과 미모를 겸비한 브레인", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTUz/MDAxNzcwOTgxMTEzODE0.xnmVLs8NoebyORw7M3fGutDyyUMLgsSJRyRmY-Ek7Wwg.x2xzMIxbZ24b_H1ge2PVAnXESDl16fTvrjbPN9f30i4g.JPEG/mina.jpg?type=w773" },
+            { name: "김민지", tag: "Athlete", desc: "육상 선수, '육상계 카리나'로 불리는 압도적 비주얼", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTg3/MDAxNzcwOTgxMTEzODE4.b-IQuDG54o15KG-v4T30yZCahBiNFTAXtELhbw0AUeEg.H-3gUSJa1LHzxNbSsVImvTWW0WFZQQu725nMBOEpswgg.JPEG/minji.jpg?type=w773" },
+            { name: "김고은", tag: "Model", desc: "2022 미스코리아 미, 시크한 외모와 반전 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNzgg/MDAxNzcwOTgxNDM1NTMz.qT1WnseEhIp1oxgPQXBQq1UjCHrhCznSzaAbJP7T-Fgg.T6_yevKlDX9HKPQJNu2FyYrxnjeNsJ7ROApFRiciY0Mg.JPEG/goeun_kim.jpg?type=w773" },
+            { name: "박희선", tag: "Cheerleader", desc: "2024 미스코리아 선, 넘치는 에너지의 치어리더 출신", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfOTUg/MDAxNzcwOTgxNDM1NTIz.3Zs2hXscc7nVnYBwhfRAgysZBLC2RjYckilr9dx3josg.rLJgm9TAPZ1Rz4veD0vIx83sX4pne3AAh70kCGTtQlEg.JPEG/heesun_park.jpg?type=w773" },
+            { name: "함예진", tag: "Announcer", desc: "프리랜서 아나운서, 차분하고 우아한 분위기", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTE0/MDAxNzcwOTgyNDEwMDEw.e_LF0xo56Cu84lGuW4tyitUCtnUZhutbVC8oyIYjVykg.EJEQDQRMqubHOoD3r-_i3fpMqcnw62vxJl95Jzdq0DIg.JPEG/%ED%95%A8%EC%98%88%EC%A7%84.jpg?type=w773" },
+            { name: "이주영", tag: "Artist", desc: "햇살 같은 미소를 가진 분위기 메이커 아티스트", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjU0/MDAxNzcwOTgyNDEwNDEy.Lbx-tY8H0WSP5lkcjtM2PjzGKCa0nAsH_NChRQSAlckg.C10zOnokBF_7mWdChKmROnOXtGZarv1IQyWYIx45y-gg.JPEG/%EC%9D%B4%EC%A3%BC%EC%98%81.jpg?type=w773" },
+            { name: "이하은", tag: "Vitamin", desc: "판도를 흔드는 톡톡 튀는 에너지와 밝은 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjAg/MDAxNzcwOTgyNDEwMzk4.H19LQyetprV5s0Bz7cT3e9a-Byl1VpKuJFPvJzFkWX0g.cxrMg5xaEFEWJYvg5pLzxmkOm8zprMTJNAKgN3w4LQYg.JPEG/%EC%9D%B4%ED%95%98%EC%9D%80.jpg?type=w773" }
+        ];
+
+        const maleCast = [
+            { name: "임수빈", tag: "Pure Man", desc: "청순함과 단단한 내면을 가진 설레는 첫사랑 아이콘", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjg1/MDAxNzcwOTgxNDM1NTIy.z0e629J0krsUBErBPkHdoUT_w0A34W7bTZgAussr868g.mEzh4gMYXE1uWEN3v4YYN4JzZOkr6wMQrgCYr_eCYXEg.JPEG/%EC%9E%84%EC%88%98%EB%B9%88.jpg?type=w773" },
+            { name: "조이건", tag: "Hot Guy", desc: "역대급 수영장 데이트의 주인공, 지옥도를 뒤흔든 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjQy/MDAxNzcwOTgxNDM1NTE4.2wEDa4K3CGHaKlcHKOGbls4HjdfZc5-4t8kOEEqPVT0g.eVAevK-2ACNURooyo3h9CCbL3mQmjIM4U3eju_3Hkukg.JPEG/%EC%A1%B0%EC%9D%B4%EA%B1%B4.jpg?type=w773" },
+            { name: "윤현제", tag: "Straight", desc: "검도 실력을 갖춘 IT 기업의 일편단심 직진남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcv/MDAxNzcwOTgyNDEwMDIy.y95lVkQyv1JC6QPKPIg0xM9jG9Fd_KktRYxSiPDLy7Eg.WWa3GrOdRgEPB_obGAHuEQKbEFw-o2qAZ6rRnw2t1uEg.JPEG/%EC%9C%A4%ED%98%84%EC%A0%9C.jpg?type=w773" },
+            { name: "우성민", tag: "Romantic", desc: "다정하고 따뜻한 로맨티시스트의 정석", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjE1/MDAxNzcwOTgyNDEwMDQw.PU3td11QhoX747H_S_VcA_qeTXPBHg8ZzVfc2DjUqpMg.m2ppQkNWnyORoriYNlMlSi_5HAaxlTxNjqK7ceYr01sg.JPEG/%EC%9A%B0%EC%84%B1%EB%AF%BC.jpg?type=w773" },
+            { name: "김재진", tag: "Dancer", desc: "현대 무용가 출신의 유연함과 반전의 엉뚱한 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcy/MDAxNzcwOTgyNDEwMDE3.BH2WPMAF6Sb0sJffauNioa7WIK3xFEeJPXFebeDJ59Mg.AT_pyAcDJSwij7gLUYrrPgLmkkU7CJ2Mxn8m70tOQysg.JPEG/%EA%B9%80%EC%9E%AC%EC%A7%84.jpg?type=w773" },
+            { name: "신현우", tag: "Handball", desc: "마초 같은 비주얼 뒤에 숨겨진 순수한 반전 순정남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjAz/MDAxNzcwOTgyNDEwMDI2.HeNfwgUN1ACa8Zp31rE3tmlT8_ommf-AzIaOsNMEe4sg.3z8DFAUW15q4Nn6Vob9Qm355LsOfm4l-6_-tw-4HEoog.JPEG/%EC%8B%A0%ED%98%84%EC%9A%B0.jpg?type=w773" },
+            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjIy/MDAxNzcwOTgyNDEwMzk1.-yIv4M_j87PN-PwvQ9thu3TLJIUFukT1iuuG_fnbHjMg.Dx1ySELrxkEXHYWpqEhAlpjBk667njFe4BnlQT98O60g.JPEG/%EC%86%A1%EC%8A%B9%EC%9D%BC.jpg?type=w773" },
+            { name: "이성훈", tag: "Quant", desc: "UC 버클리 출신 AI 엔지니어, 뇌가 섹시한 남자", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjM4/MDAxNzcwOTgyNDEwMDE4.zx70XjnRslsCvgSH_fCbWiTgHWj5G_FYjxjdHnUi8UEg.BW1Rfvgndxls1QuvceTvzWbUZavAJ42CxM9xlth4Ai8g.JPEG/%EC%9D%B4%EC%84%B1%ED%9B%88.jpg?type=w773" }
+        ];
+
+        function pickPartner(gender) {
+            const mainScreen = document.getElementById('main-screen');
+            const resultScreen = document.getElementById('result-screen');
+            const loadingScreen = document.getElementById('loading-screen');
+            const partnerImg = document.getElementById('partner-img');
+            const partnerName = document.getElementById('partner-name');
+            const partnerDesc = document.getElementById('partner-desc');
+            const partnerTag = document.getElementById('partner-tag');
+
+            mainScreen.classList.add('hidden-el');
+            loadingScreen.classList.remove('hidden-el');
+
+            let selectedCast;
+            if (gender === 'male') {
+                selectedCast = femaleCast[Math.floor(Math.random() * femaleCast.length)];
+            } else {
+                selectedCast = maleCast[Math.floor(Math.random() * maleCast.length)];
+            }
+
+            // 1.8초 로딩 애니메이션 후 결과 출력
+            setTimeout(() => {
+                partnerImg.src = selectedCast.img;
+                partnerImg.onerror = () => { partnerImg.src = "https://via.placeholder.com/600x800?text=Inferno+5+Cast"; };
+                partnerName.textContent = selectedCast.name;
+                partnerDesc.textContent = selectedCast.desc;
+                partnerTag.textContent = selectedCast.tag;
+                
+                loadingScreen.classList.add('hidden-el');
+                resultScreen.classList.remove('hidden-el');
+            }, 1800);
+        }
+
+        function resetApp() {
+            document.getElementById('result-screen').classList.add('hidden-el');
+            document.getElementById('main-screen').classList.remove('hidden-el');
+        }
+    </script>
+</body>
+</html>
