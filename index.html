@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GitHub Pages 등 외부 호스팅에서 네이버 이미지 링크를 불러오기 위한 핵심 설정 -->
+    <meta name="referrer" content="no-referrer">
     <title>솔로지옥 5 - 나의 파트너 찾기</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -27,7 +29,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* 배경 이미지 레이어 설정 (사용자 제공 링크 반영) */
+        /* 배경 이미지 레이어 설정 */
         .bg-container {
             position: fixed;
             top: 0;
@@ -41,11 +43,9 @@
         .bg-image {
             width: 100%;
             height: 100%;
-            /* 단체 사진 링크 반영 */
             background-image: url('https://postfiles.pstatic.net/MjAyNjAyMTNfMjQ/MDAxNzcwOTgyNjEyMTQz.qabDtORL8cfGgCDzqD_TxBxepSECu4JWGhn7rzX12OIg.OtiLmqiUB0dvK6BbOpVlpk9CMEgJMfkV065Wcsgg8zMg.JPEG/%EC%86%94%EB%A1%9C%EC%A7%80%EC%98%A5%EB%8B%A8%EC%B2%B4.jpg?type=w773');
             background-size: cover;
             background-position: center;
-            /* 저작권 보호 및 가독성을 위한 블러와 어둡기 조절 */
             filter: blur(5px) brightness(0.4); 
             transform: scale(1.1);
         }
@@ -89,14 +89,12 @@
 </head>
 <body>
 
-    <!-- 배경 레이어 -->
     <div class="bg-container">
         <div class="bg-image"></div>
     </div>
 
     <div id="app" class="max-w-md w-full bg-slate-950/80 backdrop-blur-2xl rounded-[3.5rem] p-8 card-glow relative border border-white/10 mx-4">
         
-        <!-- 메인 화면 -->
         <div id="main-screen">
             <div class="text-center mb-10">
                 <p class="text-orange-500 font-bold tracking-[0.5em] text-[10px] mb-3 uppercase">Netflix Series</p>
@@ -108,7 +106,6 @@
                 <p class="text-slate-400 text-xs italic font-light tracking-widest">Who is my soulmate in Inferno 5?</p>
             </div>
 
-            <!-- 성별 선택 -->
             <div class="space-y-8">
                 <div class="text-center">
                     <p class="text-slate-200 font-medium text-lg">당신의 성별을 선택하세요</p>
@@ -135,7 +132,6 @@
             </div>
         </div>
 
-        <!-- 결과 화면 -->
         <div id="result-screen" class="hidden-el text-center">
             <div class="mb-6">
                 <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-1">Match Success! 🔥</h3>
@@ -159,7 +155,6 @@
             </button>
         </div>
 
-        <!-- 로딩 화면 -->
         <div id="loading-screen" class="hidden-el text-center py-20">
             <div class="loading-fire mb-8">🔥</div>
             <p class="text-white font-bold text-lg mb-4">당신의 완벽한 케미를 분석 중...</p>
@@ -171,7 +166,6 @@
     </div>
 
     <script>
-        // 출연진 15인 데이터 리스트 (사진 링크 포함)
         const femaleCast = [
             { name: "최미나수", tag: "Miss Earth", desc: "2022 미스 어스 우승자, 지성과 미모를 겸비한 브레인", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTUz/MDAxNzcwOTgxMTEzODE0.xnmVLs8NoebyORw7M3fGutDyyUMLgsSJRyRmY-Ek7Wwg.x2xzMIxbZ24b_H1ge2PVAnXESDl16fTvrjbPN9f30i4g.JPEG/mina.jpg?type=w773" },
             { name: "김민지", tag: "Athlete", desc: "육상 선수, '육상계 카리나'로 불리는 압도적 비주얼", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTg3/MDAxNzcwOTgxMTEzODE4.b-IQuDG54o15KG-v4T30yZCahBiNFTAXtELhbw0AUeEg.H-3gUSJa1LHzxNbSsVImvTWW0WFZQQu725nMBOEpswgg.JPEG/minji.jpg?type=w773" },
@@ -189,7 +183,7 @@
             { name: "우성민", tag: "Romantic", desc: "다정하고 따뜻한 로맨티시스트의 정석", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjE1/MDAxNzcwOTgyNDEwMDQw.PU3td11QhoX747H_S_VcA_qeTXPBHg8ZzVfc2DjUqpMg.m2ppQkNWnyORoriYNlMlSi_5HAaxlTxNjqK7ceYr01sg.JPEG/%EC%9A%B0%EC%84%B1%EB%AF%BC.jpg?type=w773" },
             { name: "김재진", tag: "Dancer", desc: "현대 무용가 출신의 유연함과 반전의 엉뚱한 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcy/MDAxNzcwOTgyNDEwMDE3.BH2WPMAF6Sb0sJffauNioa7WIK3xFEeJPXFebeDJ59Mg.AT_pyAcDJSwij7gLUYrrPgLmkkU7CJ2Mxn8m70tOQysg.JPEG/%EA%B9%80%EC%9E%AC%EC%A7%84.jpg?type=w773" },
             { name: "신현우", tag: "Handball", desc: "마초 같은 비주얼 뒤에 숨겨진 순수한 반전 순정남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjAz/MDAxNzcwOTgyNDEwMDI2.HeNfwgUN1ACa8Zp31rE3tmlT8_ommf-AzIaOsNMEe4sg.3z8DFAUW15q4Nn6Vob9Qm355LsOfm4l-6_-tw-4HEoog.JPEG/%EC%8B%A0%ED%98%84%EC%9A%B0.jpg?type=w773" },
-            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjIy/MDAxNzcwOTgyNDEwMzk1.-yIv4M_j87PN-PwvQ9thu3TLJIUFukT1iuuG_fnbHjMg.Dx1ySELrxkEXHYWpqEhAlpjBk667njFe4BnlQT98O60g.JPEG/%EC%86%A1%EC%8A%B9%EC%9D%BC.jpg?type=w773" },
+            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjIv/MDAxNzcwOTgyNDEwMzk1.-yIv4M_j87PN-PwvQ9thu3TLJIUFukT1iuuG_fnbHjMg.Dx1ySELrxkEXHYWpqEhAlpjBk667njFe4BnlQT98O60g.JPEG/%EC%86%A1%EC%8A%B9%EC%9D%BC.jpg?type=w773" },
             { name: "이성훈", tag: "Quant", desc: "UC 버클리 출신 AI 엔지니어, 뇌가 섹시한 남자", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjM4/MDAxNzcwOTgyNDEwMDE4.zx70XjnRslsCvgSH_fCbWiTgHWj5G_FYjxjdHnUi8UEg.BW1Rfvgndxls1QuvceTvzWbUZavAJ42CxM9xlth4Ai8g.JPEG/%EC%9D%B4%EC%84%B1%ED%9B%88.jpg?type=w773" }
         ];
 
@@ -212,7 +206,6 @@
                 selectedCast = maleCast[Math.floor(Math.random() * maleCast.length)];
             }
 
-            // 1.8초 로딩 애니메이션 후 결과 출력
             setTimeout(() => {
                 partnerImg.src = selectedCast.img;
                 partnerImg.onerror = () => { partnerImg.src = "https://via.placeholder.com/600x800?text=Inferno+5+Cast"; };
