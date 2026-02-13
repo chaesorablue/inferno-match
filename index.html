@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- GitHub Pages 등 외부 호스팅에서 네이버 이미지 링크를 불러오기 위한 핵심 설정 -->
     <meta name="referrer" content="no-referrer">
-    <title>솔로지옥 5 - 나의 파트너 찾기</title>
+    <title>솔로지옥 5 - 나의 파트너 찾기 (Single's Inferno 5 Partner Picker)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -126,7 +126,7 @@
                     </button>
                 </div>
                 <p class="text-center text-slate-500 text-[10px] mt-10 leading-relaxed px-6 font-light opacity-80">
-                    운명적인 15인의 솔로가 당신을 기다립니다.<br>
+                    운명적인 솔로들이 당신을 기다립니다.<br>
                     천국도로 함께 떠날 단 한 명의 파트너를 확인하세요!
                 </p>
             </div>
@@ -166,24 +166,28 @@
     </div>
 
     <script>
+        // 실제 출연진 16명 (여성 8명, 남성 8명) 데이터 리스트
         const femaleCast = [
             { name: "최미나수", tag: "Miss Earth", desc: "2022 미스 어스 우승자, 지성과 미모를 겸비한 브레인", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTUz/MDAxNzcwOTgxMTEzODE0.xnmVLs8NoebyORw7M3fGutDyyUMLgsSJRyRmY-Ek7Wwg.x2xzMIxbZ24b_H1ge2PVAnXESDl16fTvrjbPN9f30i4g.JPEG/mina.jpg?type=w773" },
             { name: "김민지", tag: "Athlete", desc: "육상 선수, '육상계 카리나'로 불리는 압도적 비주얼", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTg3/MDAxNzcwOTgxMTEzODE4.b-IQuDG54o15KG-v4T30yZCahBiNFTAXtELhbw0AUeEg.H-3gUSJa1LHzxNbSsVImvTWW0WFZQQu725nMBOEpswgg.JPEG/minji.jpg?type=w773" },
             { name: "김고은", tag: "Model", desc: "2022 미스코리아 미, 시크한 외모와 반전 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNzgg/MDAxNzcwOTgxNDM1NTMz.qT1WnseEhIp1oxgPQXBQq1UjCHrhCznSzaAbJP7T-Fgg.T6_yevKlDX9HKPQJNu2FyYrxnjeNsJ7ROApFRiciY0Mg.JPEG/goeun_kim.jpg?type=w773" },
             { name: "박희선", tag: "Cheerleader", desc: "2024 미스코리아 선, 넘치는 에너지의 치어리더 출신", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfOTUg/MDAxNzcwOTgxNDM1NTIz.3Zs2hXscc7nVnYBwhfRAgysZBLC2RjYckilr9dx3josg.rLJgm9TAPZ1Rz4veD0vIx83sX4pne3AAh70kCGTtQlEg.JPEG/heesun_park.jpg?type=w773" },
             { name: "함예진", tag: "Announcer", desc: "프리랜서 아나운서, 차분하고 우아한 분위기", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjEg/MDAxNzcwOTk0MjYwNzQ4.VpIO51b8ysHG0cwBSHN9hxZTBHkVrgHEdFF7oRVRdPAg.quOBu0Egpt3FCCU5nyqNqzsGyMf43QAQ8kybzxNasnwg.JPEG/%ED%95%A8%EC%98%88%EC%A7%842.jpg?type=w773" },
-            { name: "이주영", tag: "Artist", desc: "햇살 같은 미소를 가진 분위기 메이커 아티스트", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjU0/MDAxNzcwOTgyNDEwNDEy.Lbx-tY8H0WSP5lkcjtM2PjzGKCa0nAsH_NChRQSAlckg.C10zOnokBF_7mWdChKmROnOXtGZarv1IQyWYIx45y-gg.JPEG/%EC%9D%B4%EC%A3%BC%EC%98%81.jpg?type=w773" },
-            { name: "이하은", tag: "Vitamin", desc: "판도를 흔드는 톡톡 튀는 에너지와 밝은 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjAg/MDAxNzcwOTgyNDEwMzk4.H19LQyetprV5s0Bz7cT3e9a-Byl1VpKuJFPvJzFkWX0g.cxrMg5xaEFEWJYvg5pLzxmkOm8zprMTJNAKgN3w4LQYg.JPEG/%EC%9D%B4%ED%95%98%EC%9D%80.jpg?type=w773" }
+            { name: "이주영", tag: "Artist", desc: "햇살 같은 미소를 가진 분위기 메이커 아티스트", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTkw/MDAxNzcwOTk0MjYwNzQ0.oCw669GnYkuK2EBle-lufrZy8XN_-uspJR2MSOa0NM8g.AMzazq6imBUNH7yLsYPtmwEcaQHhZQHF-DoPiM-t2q0g.JPEG/%EC%9D%B4%EC%A3%BC%EC%98%812.jpg?type=w773" },
+            { name: "이하은", tag: "Vitamin", desc: "판도를 흔드는 톡톡 튀는 에너지와 밝은 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjAg/MDAxNzcwOTgyNDEwMzk4.H19LQyetprV5s0Bz7cT3e9a-Byl1VpKuJFPvJzFkWX0g.cxrMg5xaEFEWJYvg5pLzxmkOm8zprMTJNAKgN3w4LQYg.JPEG/%EC%9D%B4%ED%95%98%EC%9D%80.jpg?type=w773" },
+            { name: "홍진경", tag: "MC", desc: "슈퍼모델 겸 솔로지옥 MC", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMTk2/MDAxNzcwOTk0ODg4MTQy.cG25x_WMA2B28mOrEnxCOGhMKKB5j2G1LInKbitlSTwg.woF7260_wD8_csI2IGQ4IJigdGshnrp357d9SrG9xb8g.JPEG/hong.jpg?type=w773" }
         ];
 
         const maleCast = [
             { name: "임수빈", tag: "Pure Man", desc: "청순함과 단단한 내면을 가진 설레는 첫사랑 아이콘", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjg1/MDAxNzcwOTgxNDM1NTIy.z0e629J0krsUBErBPkHdoUT_w0A34W7bTZgAussr868g.mEzh4gMYXE1uWEN3v4YYN4JzZOkr6wMQrgCYr_eCYXEg.JPEG/%EC%9E%84%EC%88%98%EB%B9%88.jpg?type=w773" },
             { name: "조이건", tag: "Hot Guy", desc: "역대급 수영장 데이트의 주인공, 지옥도를 뒤흔든 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjQy/MDAxNzcwOTgxNDM1NTE4.2wEDa4K3CGHaKlcHKOGbls4HjdfZc5-4t8kOEEqPVT0g.eVAevK-2ACNURooyo3h9CCbL3mQmjIM4U3eju_3Hkukg.JPEG/%EC%A1%B0%EC%9D%B4%EA%B1%B4.jpg?type=w773" },
-            { name: "윤현제", tag: "Straight", desc: "검도 실력을 갖춘 IT 기업의 일편단심 직진남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcv/MDAxNzcwOTgyNDEwMDIy.y95lVkQyv1JC6QPKPIg0xM9jG9Fd_KktRYxSiPDLy7Eg.WWa3GrOdRgEPB_obGAHuEQKbEFw-o2qAZ6rRnw2t1uEg.JPEG/%EC%9C%A4%ED%98%84%EC%A0%9C.jpg?type=w773" },
+            // 윤현제 사진 링크 업데이트 완료
+            { name: "윤현제", tag: "Straight", desc: "검도 실력을 갖춘 IT 기업의 일편단심 직진남", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMTE4/MDAxNzcwOTk1NzEzODg1.LeZR9uV6Q4-8FGpG9Yg8wsQI0zJYrNCSv3sdWLFlK04g.W-0rYB13xceBjzl_TctiGXSmckUKNydZFDwaXii1Prkg.JPEG/hyun.jpg?type=w773" },
             { name: "우성민", tag: "Romantic", desc: "다정하고 따뜻한 로맨티시스트의 정석", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjE1/MDAxNzcwOTgyNDEwMDQw.PU3td11QhoX747H_S_VcA_qeTXPBHg8ZzVfc2DjUqpMg.m2ppQkNWnyORoriYNlMlSi_5HAaxlTxNjqK7ceYr01sg.JPEG/%EC%9A%B0%EC%84%B1%EB%AF%BC.jpg?type=w773" },
             { name: "김재진", tag: "Dancer", desc: "현대 무용가 출신의 유연함과 반전의 엉뚱한 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcy/MDAxNzcwOTgyNDEwMDE3.BH2WPMAF6Sb0sJffauNioa7WIK3xFEeJPXFebeDJ59Mg.AT_pyAcDJSwij7gLUYrrPgLmkkU7CJ2Mxn8m70tOQysg.JPEG/%EA%B9%80%EC%9E%AC%EC%A7%84.jpg?type=w773" },
             { name: "신현우", tag: "Handball", desc: "마초 같은 비주얼 뒤에 숨겨진 순수한 반전 순정남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjAz/MDAxNzcwOTgyNDEwMDI2.HeNfwgUN1ACa8Zp31rE3tmlT8_ommf-AzIaOsNMEe4sg.3z8DFAUW15q4Nn6Vob9Qm355LsOfm4l-6_-tw-4HEoog.JPEG/%EC%8B%A0%ED%98%84%EC%9A%B0.jpg?type=w773" },
-            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjIg/MDAxNzcwOTgyNDEwMzk1.-yIv4M_j87PN-PwvQ9thu3TLJIUFukT1iuuG_fnbHjMg.Dx1ySELrxkEXHYWpqEhAlpjBk667njFe4BnlQT98O60g.JPEG/%EC%86%A1%EC%8A%B9%EC%9D%BC.jpg?type=w773" },
+            // 송승일 사진 링크 업데이트 완료
+            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMjkw/MDAxNzcwOTk1NzEzODky.Z57sWpBwD75htCYe39Z3xsMtO6mA215Muenzr5CzCDcg.t8LUj5csOQO3E1QJP7Qufo-409kYx9sfv_PorvvFvLMg.JPEG/song.jpg?type=w773" },
             { name: "이성훈", tag: "Quant", desc: "UC 버클리 출신 AI 엔지니어, 뇌가 섹시한 남자", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjM4/MDAxNzcwOTgyNDEwMDE4.zx70XjnRslsCvgSH_fCbWiTgHWj5G_FYjxjdHnUi8UEg.BW1Rfvgndxls1QuvceTvzWbUZavAJ42CxM9xlth4Ai8g.JPEG/%EC%9D%B4%EC%84%B1%ED%9B%88.jpg?type=w773" }
         ];
 
@@ -206,6 +210,7 @@
                 selectedCast = maleCast[Math.floor(Math.random() * maleCast.length)];
             }
 
+            // 1.8초 로딩 애니메이션 후 결과 출력
             setTimeout(() => {
                 partnerImg.src = selectedCast.img;
                 partnerImg.onerror = () => { partnerImg.src = "https://via.placeholder.com/600x800?text=Inferno+5+Cast"; };
@@ -224,5 +229,4 @@
         }
     </script>
 </body>
-
 </html>
