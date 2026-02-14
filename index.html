@@ -85,6 +85,24 @@
             50% { width: 100%; transform: translateX(0%); }
             100% { width: 0%; transform: translateX(100%); }
         }
+
+        .coupang-banner {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dotted rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        
+        .shimmer {
+            animation: shimmer 2s infinite;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
     </style>
 </head>
 <body>
@@ -93,8 +111,9 @@
         <div class="bg-image"></div>
     </div>
 
-    <div id="app" class="max-w-md w-full bg-slate-950/80 backdrop-blur-2xl rounded-[3.5rem] p-8 card-glow relative border border-white/10 mx-4">
+    <div id="app" class="max-w-md w-full bg-slate-950/85 backdrop-blur-2xl rounded-[3.5rem] p-8 card-glow relative border border-white/10 mx-4 my-10">
         
+        <!-- 메인 화면 -->
         <div id="main-screen">
             <div class="text-center mb-10">
                 <p class="text-orange-500 font-bold tracking-[0.5em] text-[10px] mb-3 uppercase">Netflix Series</p>
@@ -102,7 +121,7 @@
                     Single's <span class="inferno-gradient">Inferno 5</span>
                 </h1>
                 <div class="h-[1px] w-20 bg-gradient-to-r from-transparent via-orange-500 to-transparent mx-auto my-6"></div>
-                <h2 class="text-2xl font-bold text-white mb-1">나의 파트너는?</h2>
+                <h2 class="text-2xl font-bold text-white mb-1 text-center">나의 파트너는?</h2>
                 <p class="text-slate-400 text-xs italic font-light tracking-widest">Who is my soulmate in Inferno 5?</p>
             </div>
 
@@ -115,23 +134,20 @@
                 <div class="grid grid-cols-2 gap-6">
                     <button onclick="pickPartner('male')" class="group relative bg-white/5 hover:bg-blue-600/20 border border-white/10 hover:border-blue-500/50 py-12 rounded-[2.5rem] transition-all transform hover:-translate-y-2 active:scale-95 shadow-2xl">
                         <span class="text-5xl mb-4 block group-hover:scale-110 transition-transform">♂️</span>
-                        <span class="font-bold block text-lg">남자</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-widest">Male</span>
+                        <span class="font-bold block text-lg text-center">남자</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-widest text-center">Male</span>
                     </button>
                     
                     <button onclick="pickPartner('female')" class="group relative bg-white/5 hover:bg-pink-600/20 border border-white/10 hover:border-pink-500/50 py-12 rounded-[2.5rem] transition-all transform hover:-translate-y-2 active:scale-95 shadow-2xl">
                         <span class="text-5xl mb-4 block group-hover:scale-110 transition-transform">♀️</span>
-                        <span class="font-bold block text-lg">여자</span>
-                        <span class="text-[10px] text-slate-400 uppercase tracking-widest">Female</span>
+                        <span class="font-bold block text-lg text-center">여자</span>
+                        <span class="text-[10px] text-slate-400 uppercase tracking-widest text-center">Female</span>
                     </button>
                 </div>
-                <p class="text-center text-slate-500 text-[10px] mt-10 leading-relaxed px-6 font-light opacity-80">
-                    운명적인 솔로들이 당신을 기다립니다.<br>
-                    천국도로 함께 떠날 단 한 명의 파트너를 확인하세요!
-                </p>
             </div>
         </div>
 
+        <!-- 결과 화면 -->
         <div id="result-screen" class="hidden-el text-center">
             <div class="mb-6">
                 <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-1">Match Success! 🔥</h3>
@@ -155,6 +171,7 @@
             </button>
         </div>
 
+        <!-- 로딩 화면 -->
         <div id="loading-screen" class="hidden-el text-center py-20">
             <div class="loading-fire mb-8">🔥</div>
             <p class="text-white font-bold text-lg mb-4">당신의 완벽한 케미를 분석 중...</p>
@@ -163,31 +180,73 @@
             </div>
             <p class="text-slate-500 text-[10px] mt-8 uppercase tracking-[0.3em]">Finding your soulmate...</p>
         </div>
+
+        <!-- 쿠팡 파트너스: 김민지 착장템 후킹 배너 -->
+        <div class="coupang-banner">
+            <div class="mb-3">
+                <span class="bg-pink-600/30 text-pink-400 text-[10px] font-bold px-3 py-1 rounded-full border border-pink-500/30 uppercase tracking-wider">Editor's Pick</span>
+            </div>
+            <p class="text-white text-sm font-bold mb-1 italic">"지옥도에서도 빛난 그 코디 정보는?"</p>
+            <p class="text-slate-400 text-[11px] mb-4">육상계 카리나 김민지가 착용한 핫템 모음 ✨</p>
+            
+            <a href="https://link.coupang.com/a/dMfZZP" target="_blank" rel="noopener noreferrer" class="block group relative overflow-hidden rounded-2xl">
+                <div class="shimmer absolute inset-0 z-10 pointer-events-none"></div>
+                <div class="bg-gradient-to-r from-blue-600 to-blue-500 p-4 flex items-center justify-between shadow-lg group-hover:from-blue-500 group-hover:to-blue-400 transition-all active:scale-[0.98]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-inner overflow-hidden">
+                            <span class="text-blue-600 font-black text-xl">🛒</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="text-white font-black text-sm group-hover:translate-x-1 transition-transform">민지's 리얼 착장템 겟하기</p>
+                            <p class="text-blue-100 text-[10px]">쿠팡에서 최저가로 구매하기</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 가독성이 향상된 정책 고지 문구 -->
+            <p class="text-[10px] text-slate-400 mt-4 font-normal leading-relaxed">
+                * 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.<br>
+                민지의 스타일링으로 여러분의 데이트룩을 완성해 보세요! 😍
+            </p>
+        </div>
     </div>
 
+    <style>
+        @keyframes bounce-x {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(4px); }
+        }
+        .animate-bounce-x {
+            animation: bounce-x 1s infinite;
+        }
+    </style>
+
     <script>
-        // 실제 출연진 16명 (여성 8명, 남성 8명) 데이터 리스트
+        // 출연진 데이터 (성별 및 이미지 링크 고정)
         const femaleCast = [
             { name: "최미나수", tag: "Miss Earth", desc: "2022 미스 어스 우승자, 지성과 미모를 겸비한 브레인", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTUz/MDAxNzcwOTgxMTEzODE0.xnmVLs8NoebyORw7M3fGutDyyUMLgsSJRyRmY-Ek7Wwg.x2xzMIxbZ24b_H1ge2PVAnXESDl16fTvrjbPN9f30i4g.JPEG/mina.jpg?type=w773" },
             { name: "김민지", tag: "Athlete", desc: "육상 선수, '육상계 카리나'로 불리는 압도적 비주얼", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTg3/MDAxNzcwOTgxMTEzODE4.b-IQuDG54o15KG-v4T30yZCahBiNFTAXtELhbw0AUeEg.H-3gUSJa1LHzxNbSsVImvTWW0WFZQQu725nMBOEpswgg.JPEG/minji.jpg?type=w773" },
             { name: "김고은", tag: "Model", desc: "2022 미스코리아 미, 시크한 외모와 반전 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNzgg/MDAxNzcwOTgxNDM1NTMz.qT1WnseEhIp1oxgPQXBQq1UjCHrhCznSzaAbJP7T-Fgg.T6_yevKlDX9HKPQJNu2FyYrxnjeNsJ7ROApFRiciY0Mg.JPEG/goeun_kim.jpg?type=w773" },
             { name: "박희선", tag: "Cheerleader", desc: "2024 미스코리아 선, 넘치는 에너지의 치어리더 출신", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfOTUg/MDAxNzcwOTgxNDM1NTIz.3Zs2hXscc7nVnYBwhfRAgysZBLC2RjYckilr9dx3josg.rLJgm9TAPZ1Rz4veD0vIx83sX4pne3AAh70kCGTtQlEg.JPEG/heesun_park.jpg?type=w773" },
-            { name: "함예진", tag: "Announcer", desc: "프리랜서 아나운서, 차분하고 우아한 분위기", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjEg/MDAxNzcwOTk0MjYwNzQ4.VpIO51b8ysHG0cwBSHN9hxZTBHkVrgHEdFF7oRVRdPAg.quOBu0Egpt3FCCU5nyqNqzsGyMf43QAQ8kybzxNasnwg.JPEG/%ED%95%A8%EC%98%88%EC%A7%842.jpg?type=w773" },
-            { name: "이주영", tag: "Artist", desc: "햇살 같은 미소를 가진 분위기 메이커 아티스트", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTkw/MDAxNzcwOTk0MjYwNzQ0.oCw669GnYkuK2EBle-lufrZy8XN_-uspJR2MSOa0NM8g.AMzazq6imBUNH7yLsYPtmwEcaQHhZQHF-DoPiM-t2q0g.JPEG/%EC%9D%B4%EC%A3%BC%EC%98%812.jpg?type=w773" },
-            { name: "이하은", tag: "Vitamin", desc: "판도를 흔드는 톡톡 튀는 에너지와 밝은 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjAg/MDAxNzcwOTgyNDEwMzk4.H19LQyetprV5s0Bz7cT3e9a-Byl1VpKuJFPvJzFkWX0g.cxrMg5xaEFEWJYvg5pLzxmkOm8zprMTJNAKgN3w4LQYg.JPEG/%EC%9D%B4%ED%95%98%EC%9D%80.jpg?type=w773" },
-            { name: "홍진경", tag: "MC", desc: "슈퍼모델 겸 솔로지옥 MC", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMTk2/MDAxNzcwOTk0ODg4MTQy.cG25x_WMA2B28mOrEnxCOGhMKKB5j2G1LInKbitlSTwg.woF7260_wD8_csI2IGQ4IJigdGshnrp357d9SrG9xb8g.JPEG/hong.jpg?type=w773" }
+            { name: "함예진", tag: "Announcer", desc: "프리랜서 아나운서, 차분하고 우아한 분위기", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMTE0/MDAxNzcwOTgyNDEwMDEw.e_LF0xo56Cu84lGuW4tyitUCtnUZhutbVC8oyIYjVykg.EJEQDQRMqubHOoD3r-_i3fpMqcnw62vxJl95Jzdq0DIg.JPEG/%ED%95%A8%EC%98%88%EC%A7%84.jpg?type=w773" },
+            { name: "이주영", tag: "Artist", desc: "햇살 같은 미소를 가진 분위기 메이커 아티스트", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjU0/MDAxNzcwOTgyNDEwNDEy.Lbx-tY8H0WSP5lkcjtM2PjzGKCa0nAsH_NChRQSAlckg.C10zOnokBF_7mWdChKmROnOXtGZarv1IQyWYIx45y-gg.JPEG/%EC%9D%B4%EC%A3%BC%EC%98%81.jpg?type=w773" },
+            { name: "이하은", tag: "Vitamin", desc: "판도를 흔드는 톡톡 튀는 에너지와 밝은 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjAg/MDAxNzcwOTgyNDEwMzk4.H19LQyetprV5s0Bz7cT3e9a-Byl1VpKuJFPvJzFkWX0g.cxrMg5xaEFEWJYvg5pLzxmkOm8zprMTJNAKgN3w4LQYg.JPEG/%EC%9D%B4%ED%95%98%EC%9D%80.jpg?type=w773" }
         ];
 
         const maleCast = [
             { name: "임수빈", tag: "Pure Man", desc: "청순함과 단단한 내면을 가진 설레는 첫사랑 아이콘", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjg1/MDAxNzcwOTgxNDM1NTIy.z0e629J0krsUBErBPkHdoUT_w0A34W7bTZgAussr868g.mEzh4gMYXE1uWEN3v4YYN4JzZOkr6wMQrgCYr_eCYXEg.JPEG/%EC%9E%84%EC%88%98%EB%B9%88.jpg?type=w773" },
             { name: "조이건", tag: "Hot Guy", desc: "역대급 수영장 데이트의 주인공, 지옥도를 뒤흔든 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjQy/MDAxNzcwOTgxNDM1NTE4.2wEDa4K3CGHaKlcHKOGbls4HjdfZc5-4t8kOEEqPVT0g.eVAevK-2ACNURooyo3h9CCbL3mQmjIM4U3eju_3Hkukg.JPEG/%EC%A1%B0%EC%9D%B4%EA%B1%B4.jpg?type=w773" },
-            // 윤현제 사진 링크 업데이트 완료
-            { name: "윤현제", tag: "Straight", desc: "검도 실력을 갖춘 IT 기업의 일편단심 직진남", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMTE4/MDAxNzcwOTk1NzEzODg1.LeZR9uV6Q4-8FGpG9Yg8wsQI0zJYrNCSv3sdWLFlK04g.W-0rYB13xceBjzl_TctiGXSmckUKNydZFDwaXii1Prkg.JPEG/hyun.jpg?type=w773" },
-            { name: "우성민", tag: "Romantic", desc: "다정하고 따뜻한 로맨티시스트의 정석", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjE1/MDAxNzcwOTgyNDEwMDQw.PU3td11QhoX747H_S_VcA_qeTXPBHg8ZzVfc2DjUqpMg.m2ppQkNWnyORoriYNlMlSi_5HAaxlTxNjqK7ceYr01sg.JPEG/%EC%9A%B0%EC%84%B1%EB%AF%BC.jpg?type=w773" },
+            { name: "윤현제", tag: "Straight", desc: "검도 실력을 갖춘 IT 기업의 일편단심 직진남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcv/MDAxNzcwOTgyNDEwMDIy.y95lVkQyv1JC6QPKPIg0xM9jG9Fd_KktRYxSiPDLy7Eg.WWa3GrOdRgEPB_obGAHuEQKbEFw-o2qAZ6rRnw2t1uEg.JPEG/%EC%9C%A4%ED%98%84%EC%A0%9C.jpg?type=w773" },
+            { name: "우성민", tag: "Romantic", desc: "다정하고 따뜻한 로맨티시스트의 정석", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjE1/MDAxNzcwOTgyNDEwMDQw.PU3td11QhoX747H_S_VcA_qeTXPBHg8ZzVfc2DjUqpMg.m2ppQkNWnyORoriYNlMlSi_5HAaxlTxNjqK7ceYr01sg.JPEG/%EC%9O%B0%EC%84%B1%EB%AF%BC.jpg?type=w773" },
             { name: "김재진", tag: "Dancer", desc: "현대 무용가 출신의 유연함과 반전의 엉뚱한 매력", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjcy/MDAxNzcwOTgyNDEwMDE3.BH2WPMAF6Sb0sJffauNioa7WIK3xFEeJPXFebeDJ59Mg.AT_pyAcDJSwij7gLUYrrPgLmkkU7CJ2Mxn8m70tOQysg.JPEG/%EA%B9%80%EC%9E%AC%EC%A7%84.jpg?type=w773" },
             { name: "신현우", tag: "Handball", desc: "마초 같은 비주얼 뒤에 숨겨진 순수한 반전 순정남", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjAz/MDAxNzcwOTgyNDEwMDI2.HeNfwgUN1ACa8Zp31rE3tmlT8_ommf-AzIaOsNMEe4sg.3z8DFAUW15q4Nn6Vob9Qm355LsOfm4l-6_-tw-4HEoog.JPEG/%EC%8B%A0%ED%98%84%EC%9A%B0.jpg?type=w773" },
-            // 송승일 사진 링크 업데이트 완료
-            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTRfMjkw/MDAxNzcwOTk1NzEzODky.Z57sWpBwD75htCYe39Z3xsMtO6mA215Muenzr5CzCDcg.t8LUj5csOQO3E1QJP7Qufo-409kYx9sfv_PorvvFvLMg.JPEG/song.jpg?type=w773" },
+            { name: "송승일", tag: "Model", desc: "완벽한 피지컬을 갖춘 모델계의 라이징 스타", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfNjIv/MDAxNzcwOTgyNDEwMzk1.-yIv4M_j87PN-PwvQ9thu3TLJIUFukT1iuuG_fnbHjMg.Dx1ySELrxkEXHYWpqEhAlpjBk667njFe4BnlQT98O60g.JPEG/%EC%86%A1%EC%8A%B9%EC%9D%BC.jpg?type=w773" },
             { name: "이성훈", tag: "Quant", desc: "UC 버클리 출신 AI 엔지니어, 뇌가 섹시한 남자", img: "https://postfiles.pstatic.net/MjAyNjAyMTNfMjM4/MDAxNzcwOTgyNDEwMDE4.zx70XjnRslsCvgSH_fCbWiTgHWj5G_FYjxjdHnUi8UEg.BW1Rfvgndxls1QuvceTvzWbUZavAJ42CxM9xlth4Ai8g.JPEG/%EC%9D%B4%EC%84%B1%ED%9B%88.jpg?type=w773" }
         ];
 
@@ -210,7 +269,6 @@
                 selectedCast = maleCast[Math.floor(Math.random() * maleCast.length)];
             }
 
-            // 1.8초 로딩 애니메이션 후 결과 출력
             setTimeout(() => {
                 partnerImg.src = selectedCast.img;
                 partnerImg.onerror = () => { partnerImg.src = "https://via.placeholder.com/600x800?text=Inferno+5+Cast"; };
